@@ -1,0 +1,3 @@
+require './gitgadgets'
+
+run App
