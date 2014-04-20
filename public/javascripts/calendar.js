@@ -1,8 +1,8 @@
 var GithubGadgets = GithubGadgets || {};
 GithubGadgets.calendar = function(username, container) {
-  var width = 960,
-      height = 136,
-      cellSize = 13; // cell size
+  var cellSize = 10,
+      width = cellSize*53+2,
+      height = 136;
 
   var day = d3.time.format("%w"),
       week = d3.time.format("%U"),
@@ -20,12 +20,12 @@ GithubGadgets.calendar = function(username, container) {
       .attr("height", height)
       .attr("class", "RdYlGn")
       .append("g")
-      .attr("transform", "translate(" + ((width - cellSize * 53) / 2) + "," + (height - cellSize * 7 - 1) + ")");
+      .attr("transform", "translate(" + ((width - cellSize * 53)/2) + "," + (height - cellSize * 7 - 1) + ")");
 
-  svg.append("text")
-      .attr("transform", "translate(-6," + cellSize * 3.5 + ")rotate(-90)")
-      .style("text-anchor", "middle")
-      .text(function(d) { return d; });
+  // svg.append("text")
+  //     .attr("transform", "translate(-6," + cellSize * 3.5 + ")rotate(-90)")
+  //     .style("text-anchor", "middle")
+  //     .text(function(d) { return d; });
 
   var rect = svg.selectAll(".day")
       .data(function(d) { return d3.time.days(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
