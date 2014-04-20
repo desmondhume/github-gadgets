@@ -13,7 +13,7 @@ GithubGadgets.calendar = function(username, container) {
       .domain([0, 11])
       .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
 
-  var svg = d3.select("body").selectAll("svg")
+  var svg = d3.select(container).selectAll("svg")
       .data([2013])
       .enter().append("svg")
       .attr("width", width)
@@ -80,5 +80,5 @@ GithubGadgets.calendar = function(username, container) {
         + "H" + (w0 + 1) * cellSize + "Z";
   }
 
-  d3.select(container).style("height", "2910px");  
+  // d3.select(self.frameElement).style("height", "2910px");  
 }
