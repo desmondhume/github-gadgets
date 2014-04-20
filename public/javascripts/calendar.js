@@ -20,7 +20,7 @@ GithubGadgets.calendar = function(username, container) {
       .attr("height", height)
       .attr("class", "RdYlGn")
       .append("g")
-      .attr("transform", "translate(" + ((width - cellSize * 53)/2) + "," + (height - cellSize * 7 - 1) + ")");
+      .attr("transform", "translate(" + ((width - cellSize * 53)/2) + ",1");
 
   // svg.append("text")
   //     .attr("transform", "translate(-6," + cellSize * 3.5 + ")rotate(-90)")
