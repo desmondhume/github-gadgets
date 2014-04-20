@@ -2,7 +2,7 @@ var GithubGadgets = GithubGadgets || {};
 GithubGadgets.calendar = function(username, container) {
   var width = 960,
       height = 136,
-      cellSize = 17; // cell size
+      cellSize = 13; // cell size
 
   var day = d3.time.format("%w"),
       week = d3.time.format("%U"),
@@ -14,7 +14,7 @@ GithubGadgets.calendar = function(username, container) {
       .range(d3.range(11).map(function(d) { return "q" + d + "-11"; }));
 
   var svg = d3.select(container).selectAll("svg")
-      .data([2013])
+      .data([2014])
       .enter().append("svg")
       .attr("width", width)
       .attr("height", height)
@@ -35,6 +35,7 @@ GithubGadgets.calendar = function(username, container) {
       .attr("height", cellSize)
       .attr("x", function(d) { return week(d) * cellSize; })
       .attr("y", function(d) { return day(d) * cellSize; })
+      .attr("fill", "#fff")
       .datum(format);
 
   rect.append("title")
@@ -62,11 +63,16 @@ GithubGadgets.calendar = function(username, container) {
       
 
     rect.filter(function(d) { return d in data; })
-        .attr("class", function(d) { 
-          return "day " + color(data[d]); 
-          })
+        // .attr("class", function(d) { 
+        //   return "day " + color(data[d]); 
+        //   })
+      .attr("fill", function(d) {
+        var hex_chars = ['f', 'e', 'd', 'c', 'b', 'a'];
+        var compo = data[d]%hex_chars.length;
+        return '#'+hex_chars[compo]+hex_chars[compo]+hex_chars[compo];
+      })
       .select("title")
-        .text(function(d) { return d + ": " + percent(data[d]); });
+        .text(function(d) { return data[d] + ' contributions on ' + d; });
   });
 
   function monthPath(t0) {
@@ -79,6 +85,11 @@ GithubGadgets.calendar = function(username, container) {
         + "H" + (w1 + 1) * cellSize + "V" + 0
         + "H" + (w0 + 1) * cellSize + "Z";
   }
+
+  svg.selectAll(".day").on("mouseenter", function() {
+    console.log(this.getElementsByTagName('title')[0].innerHTML);
+  });
+
 
   // d3.select(self.frameElement).style("height", "2910px");  
 }
