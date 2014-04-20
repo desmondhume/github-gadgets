@@ -1,5 +1,5 @@
 var GithubGadgets = GithubGadgets || {};
-GithubGadgets.calendar = function(username) {
+GithubGadgets.calendar = function(username, container) {
   var width = 960,
       height = 136,
       cellSize = 17; // cell size
@@ -80,5 +80,5 @@ GithubGadgets.calendar = function(username) {
         + "H" + (w0 + 1) * cellSize + "Z";
   }
 
-  d3.select(self.frameElement).style("height", "2910px");  
+  d3.select(container).style("height", "2910px");  
 }
