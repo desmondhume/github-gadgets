@@ -1,6 +1,8 @@
 github-gadgets
 ==============
 
+###This readme is already out of date, will be updated asap.
+
 Simple proxy for ajax calls to github contributions api.
 The app is now deployed on heroku at:
 [http://vast-meadow-7354.herokuapp.com](http://vast-meadow-7354.herokuapp.com)
