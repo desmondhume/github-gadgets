@@ -53,23 +53,12 @@ GithubGadgets.calendar = function(username, container) {
         return d.date; 
       })
       .rollup(function(d) {
-        // return 0.003703525;
-        // console.log(d[0].total/1000);
         return d[0].total;
       }).map(json);
 
-      // (10829.68 - 10789.72) / 10789.72
-      // .rollup(function(d) { return (d[0].Close - d[0].Open) / d[0].Open; })
-      
-
     rect.filter(function(d) { return d in data; })
-        // .attr("class", function(d) { 
-        //   return "day " + color(data[d]); 
-        //   })
       .attr("fill", function(d) {
-        var hex_chars = ['f', 'e', 'd', 'c', 'b', 'a'];
-        var compo = data[d]%hex_chars.length;
-        return '#'+hex_chars[compo]+hex_chars[compo]+hex_chars[compo];
+        return getGreyColor(data[d]);
       })
       .select("title")
         .text(function(d) { return data[d] + ' contributions on ' + d; });
@@ -86,10 +75,13 @@ GithubGadgets.calendar = function(username, container) {
         + "H" + (w0 + 1) * cellSize + "Z";
   }
 
+  function getGreyColor(num) {
+    var rgb = parseInt(255 - ((num/10)*255));
+    return 'rgb('+rgb+','+rgb+','+rgb+')';
+  }
+
   svg.selectAll(".day").on("mouseenter", function() {
     console.log(this.getElementsByTagName('title')[0].innerHTML);
   });
 
-
-  // d3.select(self.frameElement).style("height", "2910px");  
 }
