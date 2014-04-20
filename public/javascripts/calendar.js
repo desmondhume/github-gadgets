@@ -46,7 +46,7 @@ GithubGadgets.calendar = function(username) {
       .attr("class", "month")
       .attr("d", monthPath);
 
-  d3.json("http://localhost:9292/"+username+"/calendar", function(error, json) {
+  d3.json("http://vast-meadow-7354.herokuapp.com/"+username+"/calendar", function(error, json) {
     var data = d3.nest()
       .key(function(d) { 
         return d.date; 
